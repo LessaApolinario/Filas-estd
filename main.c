@@ -1,29 +1,48 @@
 #include "./src/fila.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include "fila.h"
 
 int main(void) {
-  Fila *f = criar();
-  Fila *f2 = criar();
+  setlocale(LC_ALL, "Portuguese");
 
-  inserir(f, 10);
-  inserir(f, 11);
-  inserir(f, 13);
+  int resposta;
+  int controlador[6];
 
-	consultar(f);
+  resposta = menu();
 
-  // printf("\n Quantidade de elementos: %d", contar(f));
+  switch (resposta) {
+    case 1:
+    
+      break;
+    
+    case 2:
 
-  // consultar(f);
+      break;
 
-  // remover(f);
-  // remover(f);
+    case 3:
 
-	// removeNoFinal(f, 13);
+      break;
+    
+    case 4:
 
-	//inseriNoInicio(f, 14);
+      break;
 
-  // consultar(f);
+    case 5:
+
+      break;
+    
+    case 6: 
+
+      break;
+
+    default:
+      erro();
+      break;
+  }
 
   return 0;
 }
