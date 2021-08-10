@@ -20,3 +20,9 @@ void consultar(Fila *f);
 int remover(Fila *f);
 
 int contar(Fila *f);
+
+int menu ();
+
+void pula_linha();
+
+void erro();

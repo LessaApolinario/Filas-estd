@@ -1,70 +1,60 @@
-#include "./src/fila.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
+#include "./src/fila.h"
 
-int main() {
-  Fila *f = criar();
+int main(void) {
+  setlocale(LC_ALL, "Portuguese");
 
-  int op, tempoDeExpediente;
+  int resposta;
+  int controlador[6];
 
-  printf("Qual é o tempo de expediente?\n");
-  scanf("%d", &tempoDeExpediente);
+  resposta = menu();
 
-  do {
-    printf("\n----------Fila do banco----------\n");
-    printf("\n[1] - Consultar saldo");
-    printf("\n[2] - Sacar");
-    printf("\n[3] - Aplicação");
-    printf("\n[4] - Extrato");
-    printf("\n[5] - Pagamento em dinheiro");
-    printf("\n[6] - Pagamento com débito em conta");
-    printf("\n[7] - exibir dados diários");
-    printf("\n[0] - SAIR");
-    printf("\n---------------------------------\n");
-    printf("Escolha um serviço:\n");
-    scanf("%d", &op);
+  switch (resposta) {
+  case 1:
+    // consultarSaldo();
+    // calcularTempo();
+    break;
 
-    switch (op) {
-      case 1:
-        // consultarSaldo();
-        // calcularTempoDeEspera();
-        break;
-      case 2:
-        // sacar();
-        // calcularTempoDeEspera();
-        break;
-      case 3:
-        // aplicacao();
-        // calcularTempoDeEspera();
-        break;
-      case 4:
-        // extrato();
-        // calcularTempoDeEspera();
-        break;
-      case 5:
-        // pagamentoEmDinheiro();
-        // calcularTempoDeEspera();
-        break;
-      case 6:
-        // pagamentoComDebito();
-        // calcularTempoDeEspera();
-        break;
-      case 7:
-        printf("\nFim do expediente:\n");
-        // clientesAtendidos();
-        // clientesNaoAtendidos();
-        // tempoPrioridade();
-        // quantidadePorOperacao();
-        // tempoTotalPorOperacao();
-        break;
-      case 0:
-        printf("\nTransações finalizadas\n");
-        break;
-      default:
-        printf("\nOperação inválida\n");
-        break;
-    }
-  } while (op != 0);
+  case 2:
+    // sacarDinheiro();
+    // calcularTempo();
+    break;
+
+  case 3:
+    // aplicacao();
+    // calcularTempo();
+
+    break;
+
+  case 4:
+    // extrato();
+    // calcularTempo();
+    break;
+
+  case 5:
+    // pagarEmDinheiro();
+    // calcularTempo();
+    break;
+
+  case 6:
+    // pagarComDebito();
+    // calcularTempo();
+    break;
+
+  case 7:
+    printf("\nDados após o fim do expediente:\n");
+    // quantidadeAtendidos();
+    // quantidadeNaoAtendidos();
+    // tempoPorAcaoPrioridade();
+    // quantidadeTransacao();
+    // tempoTransacoes();
+    break;
+  default:
+    erro();
+    break;
+  }
 
   return 0;
 }
