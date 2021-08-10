@@ -3,58 +3,63 @@
 #include <locale.h>
 #include "./src/fila.h"
 
-int main(void) {
+int main() {
+  Fila *f = criar();
+
   setlocale(LC_ALL, "Portuguese");
 
   int resposta;
   int controlador[6];
 
-  resposta = menu();
+  do {
+    menu();
+    scanf("%i", &resposta);
 
-  switch (resposta) {
-  case 1:
-    // consultarSaldo();
-    // calcularTempo();
-    break;
+    switch (resposta) {
+    case 1:
+      consultarSaldo(f);
+      // calcularTempo();
+      break;
 
-  case 2:
-    // sacarDinheiro();
-    // calcularTempo();
-    break;
+    case 2:
+      // sacarDinheiro();
+      // calcularTempo();
+      break;
 
-  case 3:
-    // aplicacao();
-    // calcularTempo();
+    case 3:
+      // aplicacao();
+      // calcularTempo();
 
-    break;
+      break;
 
-  case 4:
-    // extrato();
-    // calcularTempo();
-    break;
+    case 4:
+      // extrato();
+      // calcularTempo();
+      break;
 
-  case 5:
-    // pagarEmDinheiro();
-    // calcularTempo();
-    break;
+    case 5:
+      // pagarEmDinheiro();
+      // calcularTempo();
+      break;
 
-  case 6:
-    // pagarComDebito();
-    // calcularTempo();
-    break;
+    case 6:
+      // pagarComDebito();
+      // calcularTempo();
+      break;
 
-  case 7:
-    printf("\nDados após o fim do expediente:\n");
-    // quantidadeAtendidos();
-    // quantidadeNaoAtendidos();
-    // tempoPorAcaoPrioridade();
-    // quantidadeTransacao();
-    // tempoTransacoes();
-    break;
-  default:
-    erro();
-    break;
-  }
+    case 7:
+      printf("\nDados após o fim do expediente:\n");
+      // quantidadeAtendidos();
+      // quantidadeNaoAtendidos();
+      // tempoPorAcaoPrioridade();
+      // quantidadeTransacao();
+      // tempoTransacoes();
+      break;
+    default:
+      erro();
+      break;
+    }
+  } while (resposta != 0);
 
   return 0;
 }

@@ -6,6 +6,7 @@ struct lista {
 typedef struct lista Lista;
 
 struct fila {
+  float saldo;
   Lista *inicio;
   Lista *fim;
 };
@@ -21,8 +22,10 @@ int remover(Fila *f);
 
 int contar(Fila *f);
 
-int menu ();
+void menu();
 
 void pula_linha();
 
 void erro();
+
+void consultarSaldo(Fila *f);

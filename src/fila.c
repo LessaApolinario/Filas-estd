@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "fila.h"
 
 Fila* criar() {
@@ -77,9 +78,7 @@ void erro() {
     pula_linha();
 }
 
-int menu() {
-  int resposta;
-
+void menu() {
   printf("------FILA DO BANCO------");
   pula_linha();
   printf("Qual serviço você fará? ");
@@ -87,7 +86,19 @@ int menu() {
   printf("1 - Consultar saldo.\n 2 - Sacar dinheiro.");
   printf("\n3 - Aplicação.\n4 - Extrato.\n5 - Pagamento em dinheiro.");
   printf("\n6 - Pagamento com débito em conta.\n:");
-  scanf("%i", &resposta);
+}
 
-  return resposta;
+void consultarSaldo(Fila *f) {
+  float saldo = 0;
+
+  if (f->saldo == 0) {
+    printf("Informe o saldo do cliente: ");
+    scanf("%f", &saldo);
+
+    f->saldo = saldo;
+  }
+
+  pula_linha();
+  printf("Seu saldo: %.2f", f->saldo);
+  pula_linha();
 }
