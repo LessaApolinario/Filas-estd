@@ -89,13 +89,8 @@ void menu() {
 }
 
 void consultarSaldo(Fila *f) {
-  float saldo = 0;
-
   if (f->saldo == 0) {
-    printf("Informe o saldo do cliente: ");
-    scanf("%f", &saldo);
-
-    f->saldo = saldo;
+    f->saldo = 1500;
   }
 
   pula_linha();

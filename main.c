@@ -29,7 +29,7 @@ int main() {
     scanf("%i", &resposta);
 
     switch (resposta) {
-    case 0: 
+    case 0:
       printf("Agradecemos a preferência!");
       break;
 
@@ -45,6 +45,7 @@ int main() {
       // sacarDinheiro();
       sacarDinheiro(f);
       tempoSacar += 20;
+      inserir(f, tempoSacar);
       qtdSacar++;
       atendidos++;
       break;
