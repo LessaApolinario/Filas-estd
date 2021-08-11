@@ -29,6 +29,10 @@ int main() {
     scanf("%i", &resposta);
 
     switch (resposta) {
+    case 0: 
+      printf("Agradecemos a preferência!");
+      break;
+
     case 1:
       consultarSaldo(f);
       tempoSaldo += 10; // + 10 segundos
@@ -39,6 +43,7 @@ int main() {
 
     case 2:
       // sacarDinheiro();
+      sacarDinheiro(f);
       tempoSacar += 20;
       qtdSacar++;
       atendidos++;
@@ -73,29 +78,50 @@ int main() {
       break;
 
     case 7:
-      printf("\nDados após o fim do expediente:\n");
-      printf("\n----------Índices de atendimento----------\n");
-      printf("\nAtendidos = %d\n", atendidos);
-      printf("\nNão atendidos = %d", (contar(f) - atendidos));
-      printf("\n------------------------------------------\n");
+      printf("\nDados após o fim do expediente:");
+      pula_linha();
+      printf("----------Índices de atendimento----------");
+      pula_linha();
+      printf("Atendidos = %d", atendidos);
+      pula_linha();
+      printf("Não atendidos = %d", (contar(f) - atendidos));
+      pula_linha();
+      printf("------------------------------------------");
       // quantidade Atendidos com prioridade
       // Precisamos criar uma lógica para fila com prioridade
-      printf("\n-----Frequência de cada operação-----\n");
-      printf("\nConsultas de saldo = %d\n", qtdSaldo);
-      printf("\nSaques = %d\n", qtdSacar);
-      printf("\nAplicações = %d\n", qtdAplicacao);
-      printf("\nExtratos = %d\n", qtdExtrato);
-      printf("\nPagamentos em dinheiro = %d\n", qtdPagamentoDinheiro);
-      printf("\nPagamentos com débito em conta = %d\n", qtdPagamentoDebito);
-      printf("\n-------------------------------------\n");
-      printf("\n-----Tempos por operação-----\n");
-      printf("\nTempo total das consultas de saldo = %ds\n", tempoSaldo);
-      printf("\nTempo total dos saques = %ds\n", tempoSacar);
-      printf("\nTempo total das aplicações = %ds\n", tempoAplicacao);
-      printf("\nTempo total dos extratos = %ds\n", tempoExtrato);
-      printf("\nTempo total dos pagamentos em dinheiro = %ds\n", tempoDinheiro);
-      printf("\nTempo total dos pagamentos com débito em conta = %ds\n", tempoDebito);
-      printf("\n-----------------------------\n");
+      pula_linha();
+      printf("-----Frequência de cada operação-----");
+      pula_linha();
+      printf("Consultas de saldo = %d", qtdSaldo);
+      pula_linha();
+      printf("Saques = %d", qtdSacar);
+      pula_linha();
+      printf("Aplicações = %d", qtdAplicacao);
+      pula_linha();
+      printf("Extratos = %d", qtdExtrato);
+      pula_linha();
+      printf("Pagamentos em dinheiro = %d", qtdPagamentoDinheiro);
+      pula_linha();
+      printf("Pagamentos com débito em conta = %d", qtdPagamentoDebito);
+      pula_linha();
+      printf("-------------------------------------");
+      pula_linha();
+      printf("-----Tempos por operação-----");
+      pula_linha();
+      printf("Tempo total das consultas de saldo = %ds", tempoSaldo);
+      pula_linha();
+      printf("Tempo total dos saques = %ds", tempoSacar);
+      pula_linha();
+      printf("Tempo total das aplicações = %ds", tempoAplicacao);
+      pula_linha();
+      printf("Tempo total dos extratos = %ds", tempoExtrato);
+      pula_linha();
+      printf("Tempo total dos pagamentos em dinheiro = %ds", tempoDinheiro);
+      pula_linha();
+      printf("Tempo total dos pagamentos com débito em conta = %ds", tempoDebito);
+      pula_linha();
+      printf("-----------------------------");
+      pula_linha();
       break;
     default:
       erro();

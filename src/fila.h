@@ -29,3 +29,5 @@ void pula_linha();
 void erro();
 
 void consultarSaldo(Fila *f);
+
+void sacarDinheiro(Fila *f);
