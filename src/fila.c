@@ -102,3 +102,16 @@ void consultarSaldo(Fila *f) {
   printf("Seu saldo: %.2f", f->saldo);
   pula_linha();
 }
+
+void sacarDinheiro(Fila *f) {
+  Fila *aux = f;
+  float valorSaque;
+  printf("Quanto você deseja sacar? ");
+  scanf("%f", valorSaque);
+
+  aux->saldo -= valorSaque;
+
+  pula_linha();
+  printf("Valor retirado com sucesso!");
+  pula_linha();
+}
