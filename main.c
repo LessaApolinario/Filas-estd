@@ -51,8 +51,14 @@ int main() {
       break;
 
     case 3:
-      // aplicacao();
+      /*
+        Por favor antes de usar essa função exiba o saldo
+        com a função consultarSaldo() para que o saldo da aplicação
+        seja diferente de 0, evitando que a saída seja 0 na função aplicacao().
+      */
+      aplicacao(f);
       tempoAplicacao += 30;
+      inserir(f, tempoAplicacao);
       qtdAplicacao++;
       atendidos++;
       break;

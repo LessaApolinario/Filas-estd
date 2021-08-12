@@ -102,11 +102,38 @@ void sacarDinheiro(Fila *f) {
   Fila *aux = f;
   float valorSaque;
   printf("Quanto você deseja sacar? ");
-  scanf("%f", valorSaque);
+  scanf("%f", &valorSaque);
 
   aux->saldo -= valorSaque;
 
   pula_linha();
   printf("Valor retirado com sucesso!");
+  pula_linha();
+}
+
+void aplicacao(Fila *f) {
+  int meses, i;
+  float impostoDeRenda = 0, rendimento = 0, taxa, taxaIR;
+
+  printf("Quantos meses? ");
+  scanf("%d", &meses);
+
+  printf("Qual é a taxa mensal? ");
+  scanf("%f", &taxa);
+
+  printf("Qual é a taxa do imposto de renda? ");
+  scanf("%f", &taxaIR);
+
+  for (i = 1; i <= meses; i++) {
+    rendimento += f->saldo * (taxa / 100);
+    f->saldo += rendimento;
+
+    printf("Saldo no mês %d = R$ %.2f\n", i, f->saldo);
+  }
+
+  impostoDeRenda = rendimento * (taxaIR / 100);
+
+  pula_linha();
+  printf("Valor a receber = R$ %.2f\n", (f->saldo - impostoDeRenda));
   pula_linha();
 }

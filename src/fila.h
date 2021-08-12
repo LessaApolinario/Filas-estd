@@ -31,3 +31,5 @@ void erro();
 void consultarSaldo(Fila *f);
 
 void sacarDinheiro(Fila *f);
+
+void aplicacao(Fila *f);
