@@ -141,7 +141,7 @@ void aplicacao(Fila *f) {
 void pagarEmDinheiro(Fila *f) {
   float divida;
 
-  printf("Qual é o valor da dívida? ");
+  printf("Qual é o valor da divida? ");
   scanf("%f", &divida);
 
   if (f->saldo >= divida) {
