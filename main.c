@@ -30,19 +30,18 @@ int main() {
 
     switch (resposta) {
     case 0:
-      printf("Agradecemos a preferência!");
+      printf("Agradecemos a preferência!\n");
       break;
 
     case 1:
       consultarSaldo(f);
-      tempoSaldo += 10; // + 10 segundos
+      tempoSaldo += 10;
       inserir(f, tempoSaldo);
       qtdSaldo++;
       atendidos++;
       break;
 
     case 2:
-      // sacarDinheiro();
       sacarDinheiro(f);
       tempoSacar += 20;
       inserir(f, tempoSacar);
@@ -71,8 +70,10 @@ int main() {
       break;
 
     case 5:
-      // pagarEmDinheiro();
+      // Por favor exiba o saldo antes de executar essa função
+      pagarEmDinheiro(f);
       tempoDinheiro += 50;
+      inserir(f, tempoDinheiro);
       qtdPagamentoDinheiro++;
       atendidos++;
       break;

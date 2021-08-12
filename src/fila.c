@@ -83,7 +83,7 @@ void menu() {
   pula_linha();
   printf("Qual serviço você fará? ");
   pula_linha();
-  printf("1 - Consultar saldo.\n 2 - Sacar dinheiro.");
+  printf("1 - Consultar saldo.\n2 - Sacar dinheiro.");
   printf("\n3 - Aplicação.\n4 - Extrato.\n5 - Pagamento em dinheiro.");
   printf("\n6 - Pagamento com débito em conta.\n:");
 }
@@ -136,4 +136,23 @@ void aplicacao(Fila *f) {
   pula_linha();
   printf("Valor a receber = R$ %.2f\n", (f->saldo - impostoDeRenda));
   pula_linha();
+}
+
+void pagarEmDinheiro(Fila *f) {
+  float divida;
+
+  printf("Qual é o valor da dívida? ");
+  scanf("%f", &divida);
+
+  if (f->saldo >= divida) {
+    pula_linha();
+    printf("Pagamento realizado com sucesso!");
+    pula_linha();
+
+    f->saldo -= divida;
+  } else {
+    pula_linha();
+    printf("Saldo insuficiente, falha no pagamento!");
+    pula_linha();
+  }
 }
