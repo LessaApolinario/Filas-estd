@@ -16,8 +16,7 @@ void inserir(Fila *f, int valor) {
 
 	if (f->inicio == NULL) {
     f->inicio = f->fim = aux;
-  }
-	else {
+  } else {
     f->fim->prox = aux;
     f->fim = aux;
   }
@@ -28,9 +27,10 @@ void consultar(Fila *f){
 
   printf("\nFila: ");
 
-	while(aux!=NULL){
+	while(aux != NULL){
     printf("%d ", aux->info);
-    aux=aux->prox;
+
+    aux = aux->prox;
   }
 
 	printf("\n");
@@ -94,7 +94,7 @@ void consultarSaldo(Fila *f) {
   }
 
   pula_linha();
-  printf("Seu saldo: %.2f", f->saldo);
+  printf("Seu saldo: R$ %.2f", f->saldo);
   pula_linha();
 }
 
@@ -155,4 +155,20 @@ void pagarEmDinheiro(Fila *f) {
     printf("Saldo insuficiente, falha no pagamento!");
     pula_linha();
   }
+}
+
+void pagarComDebito(Fila *f) {
+  float debito = 200;
+  char data[10] = "20/08/2021";
+
+  f->saldo -= debito;
+
+  pula_linha();
+  printf("--------------------");
+  pula_linha();
+  printf("Data do débito: %s\n", data);
+  printf("Valor do débito (D): R$ %.2f\n", debito);
+  pula_linha();
+  printf("--------------------");
+  pula_linha();
 }

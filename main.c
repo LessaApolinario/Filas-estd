@@ -79,8 +79,10 @@ int main() {
       break;
 
     case 6:
-      // pagarComDebito();
+      // Por favor exiba o saldo antes de executar essa função
+      pagarComDebito(f);
       tempoDebito += 35;
+      inserir(f, tempoDebito);
       qtdPagamentoDebito++;
       atendidos++;
       break;
