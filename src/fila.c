@@ -172,3 +172,32 @@ void pagarComDebito(Fila *f) {
   printf("--------------------");
   pula_linha();
 }
+
+int contarOperacao(Fila *f, int tempo) {
+  int cont = 0;
+
+  Lista *aux = f->inicio;
+
+  while (aux != NULL) {
+    if (aux->info == tempo) {
+      cont++;
+    }
+
+    aux = aux->prox;
+  }
+
+  return cont;
+}
+
+int acumularTempo(Fila *f, int tempo) {
+  int total = 0;
+
+  Lista *aux = f->inicio;
+
+  while (aux != NULL) {
+    total += tempo;
+    aux = aux->prox;
+  }
+
+  return total;
+}

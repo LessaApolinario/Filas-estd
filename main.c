@@ -11,18 +11,8 @@ int main() {
   int resposta;
   int controlador[6];
 
-  // contadores de clientes
-  int atendidos = 0, naoAtendidos = 0;
-
-  // Tempos a serem acumulados
-  int tempoSaldo = 0, tempoSacar = 0;
-  int tempoAplicacao = 0, tempoExtrato = 0;
-  int tempoDinheiro = 0, tempoDebito = 0;
-
-  // Frequência das operações
-  int qtdSaldo = 0, qtdSacar = 0;
-  int qtdAplicacao = 0, qtdExtrato = 0;
-  int qtdPagamentoDinheiro = 0, qtdPagamentoDebito = 0;
+  // contador de clientes
+  int atendidos = 0;
 
   do {
     menu();
@@ -35,17 +25,13 @@ int main() {
 
     case 1:
       consultarSaldo(f);
-      tempoSaldo += 10;
-      inserir(f, tempoSaldo);
-      qtdSaldo++;
+      inserir(f, 10); // 10 segundos
       atendidos++;
       break;
 
     case 2:
       sacarDinheiro(f);
-      tempoSacar += 20;
-      inserir(f, tempoSacar);
-      qtdSacar++;
+      inserir(f, 20); // 20 segundos
       atendidos++;
       break;
 
@@ -56,34 +42,27 @@ int main() {
         seja diferente de 0, evitando que a saída seja 0 na função aplicacao().
       */
       aplicacao(f);
-      tempoAplicacao += 30;
-      inserir(f, tempoAplicacao);
-      qtdAplicacao++;
+      inserir(f, 30); // 30 segundos
       atendidos++;
       break;
 
     case 4:
       // extrato();
-      tempoExtrato += 40;
-      qtdExtrato++;
+      inserir(f, 40); // 40 segundos
       atendidos++;
       break;
 
     case 5:
       // Por favor exiba o saldo antes de executar essa função
       pagarEmDinheiro(f);
-      tempoDinheiro += 50;
-      inserir(f, tempoDinheiro);
-      qtdPagamentoDinheiro++;
+      inserir(f, 50); // 50 segundos
       atendidos++;
       break;
 
     case 6:
       // Por favor exiba o saldo antes de executar essa função
       pagarComDebito(f);
-      tempoDebito += 35;
-      inserir(f, tempoDebito);
-      qtdPagamentoDebito++;
+      inserir(f, 35); // 35 segundos
       atendidos++;
       break;
 
@@ -102,33 +81,33 @@ int main() {
       pula_linha();
       printf("-----Frequência de cada operação-----");
       pula_linha();
-      printf("Consultas de saldo = %d", qtdSaldo);
+      printf("Consultas de saldo = %d", contarOperacao(f, 10));
       pula_linha();
-      printf("Saques = %d", qtdSacar);
+      printf("Saques = %d", contarOperacao(f, 20));
       pula_linha();
-      printf("Aplicações = %d", qtdAplicacao);
+      printf("Aplicações = %d", contarOperacao(f, 30));
       pula_linha();
-      printf("Extratos = %d", qtdExtrato);
+      printf("Extratos = %d", contarOperacao(f, 40));
       pula_linha();
-      printf("Pagamentos em dinheiro = %d", qtdPagamentoDinheiro);
+      printf("Pagamentos em dinheiro = %d", contarOperacao(f, 50));
       pula_linha();
-      printf("Pagamentos com débito em conta = %d", qtdPagamentoDebito);
+      printf("Pagamentos com débito em conta = %d", contarOperacao(f, 35));
       pula_linha();
       printf("-------------------------------------");
       pula_linha();
       printf("-----Tempos por operação-----");
       pula_linha();
-      printf("Tempo total das consultas de saldo = %ds", tempoSaldo);
+      printf("Tempo total das consultas de saldo = %ds", acumularTempo(f, 10));
       pula_linha();
-      printf("Tempo total dos saques = %ds", tempoSacar);
+      printf("Tempo total dos saques = %ds", acumularTempo(f, 20));
       pula_linha();
-      printf("Tempo total das aplicações = %ds", tempoAplicacao);
+      printf("Tempo total das aplicações = %ds", acumularTempo(f, 30));
       pula_linha();
-      printf("Tempo total dos extratos = %ds", tempoExtrato);
+      printf("Tempo total dos extratos = %ds", acumularTempo(f, 40));
       pula_linha();
-      printf("Tempo total dos pagamentos em dinheiro = %ds", tempoDinheiro);
+      printf("Tempo total dos pagamentos em dinheiro = %ds", acumularTempo(f, 50));
       pula_linha();
-      printf("Tempo total dos pagamentos com débito em conta = %ds", tempoDebito);
+      printf("Tempo total dos pagamentos com débito em conta = %ds", acumularTempo(f, 35));
       pula_linha();
       printf("-----------------------------");
       pula_linha();
