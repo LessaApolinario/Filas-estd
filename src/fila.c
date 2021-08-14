@@ -195,9 +195,20 @@ int acumularTempo(Fila *f, int tempo) {
   Lista *aux = f->inicio;
 
   while (aux != NULL) {
-    total += tempo;
+    if (aux->info == tempo) {
+      total += tempo;
+    }
     aux = aux->prox;
   }
 
   return total;
+}
+
+int temPrioridade() {
+  int resposta;
+
+  printf("É idoso (a) ou gestante? (1 - SIM, 0 - NÃO)\n");
+  scanf("%d", &resposta);
+
+  return resposta;
 }

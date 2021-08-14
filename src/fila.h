@@ -41,3 +41,5 @@ void pagarComDebito(Fila *f);
 int contarOperacao(Fila *f, int tempo);
 
 int acumularTempo(Fila *f, int tempo);
+
+int temPrioridade();
