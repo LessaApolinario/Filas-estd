@@ -34,6 +34,8 @@ void sacarDinheiro(Fila *f);
 
 void aplicacao(Fila *f);
 
+void extrato(Fila *f);
+
 void pagarEmDinheiro(Fila *f);
 
 void pagarComDebito(Fila *f);

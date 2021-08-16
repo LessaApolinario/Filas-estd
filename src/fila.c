@@ -138,6 +138,14 @@ void aplicacao(Fila *f) {
   pula_linha();
 }
 
+void extrato(Fila *f) {
+  printf("------EXTRATO------");
+  pula_linha();
+  printf("C: R$%f\n", f->saldo);
+  printf("D: ------");
+  pula_linha();
+}
+
 void pagarEmDinheiro(Fila *f) {
   float divida;
 
@@ -212,3 +220,5 @@ int temPrioridade() {
 
   return resposta;
 }
+
+

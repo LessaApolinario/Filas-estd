@@ -12,6 +12,10 @@ int main() {
   int resposta, horarioExpediente = 0;
   int controlador[6];
 
+  for (int i = 0; i < 6; i++) {
+      controlador[i] = 0;
+  }
+
   // contador de clientes
   int atendidos = 0;
 
@@ -25,6 +29,14 @@ int main() {
       break;
 
     case 1:
+
+      if (controlador[0] != 0) {
+        erro();
+        printf("\nOperação já efetuada!");
+        pula_linha();
+        break;
+      }
+
       if (temPrioridade() == 1) {
         consultarSaldo(prioridade);
         inserir(prioridade, 10);
@@ -33,10 +45,19 @@ int main() {
         inserir(f, 10); // 10 segundos
       }
 
+      controlador[0]++;
       atendidos++;
       break;
 
     case 2:
+
+      if (controlador[1] != 0) {
+        erro();
+        printf("\nOperação já efetuada!");
+        pula_linha();
+        break;
+      }
+
       if (temPrioridade() == 1) {
         sacarDinheiro(prioridade);
         inserir(prioridade, 20);
@@ -45,6 +66,7 @@ int main() {
         inserir(f, 20); // 20 segundos
       }
 
+      controlador[1]++;
       atendidos++;
       break;
 
@@ -54,6 +76,14 @@ int main() {
         com a função consultarSaldo() para que o saldo da aplicação
         seja diferente de 0, evitando que a saída seja 0 na função aplicacao().
       */
+     
+     if (controlador[2] != 0) {
+        erro();
+        printf("\nOperação já efetuada!");
+        pula_linha();
+        break;
+      }
+
      if (temPrioridade() == 1) {
        aplicacao(prioridade);
        inserir(prioridade, 30);
@@ -62,23 +92,41 @@ int main() {
        inserir(f, 30); // 30 segundos
      }
 
+      controlador[2]++;
       atendidos++;
       break;
 
     case 4:
+      
+      if (controlador[3] != 0) {
+        erro();
+        printf("\nOperação já efetuada!");
+        pula_linha();
+        break;
+      }
+
       if (temPrioridade() == 1) {
-        // extrato(prioridade);
+        extrato(prioridade);
         inserir(prioridade, 40);
       } else {
-        // extrato(f);
+        extrato(f);
         inserir(f, 40); // 40 segundos
       }
 
+      controlador[3]++;
       atendidos++;
       break;
 
     case 5:
       // Por favor exiba o saldo antes de executar essa função
+      
+      if (controlador[4] != 0) {
+        erro();
+        printf("\nOperação já efetuada!");
+        pula_linha();
+        break;
+      }
+
       if (temPrioridade() == 1) {
         pagarEmDinheiro(prioridade);
         inserir(prioridade, 50);
@@ -87,11 +135,20 @@ int main() {
         inserir(f, 50); // 50 segundos
       }
 
+      controlador[4]++;
       atendidos++;
       break;
 
     case 6:
       // Por favor exiba o saldo antes de executar essa função
+      
+      if (controlador[5] != 0) {
+        erro();
+        printf("\nOperação já efetuada!");
+        pula_linha();
+        break;
+      }
+
       if (temPrioridade() == 1) {
         pagarComDebito(prioridade);
         inserir(prioridade, 35);
@@ -100,6 +157,7 @@ int main() {
         inserir(f, 35); // 35 segundos
       }
 
+      controlador[5]++;
       atendidos++;
       break;
 
