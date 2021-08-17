@@ -12,18 +12,45 @@ int main() {
   int resposta, i = 1;
   int controlador[6];
   int numClientes;
+  int counter;
 
   printf("Informe o número de clientes: ");
   scanf("%d", &numClientes);
 
+  printf("\n-----Formação da fila-----\n");
+  printf("\n-----prioridade-----\n");
+  // preenchendo a fila com prioridade
+  for (counter = 1; counter <= numClientes; counter++) {
+    pula_linha();
+    menu();
+    scanf("%d", &resposta);
+
+    inserir(prioridade, resposta);
+  }
+
+  counter = 0; // reinicializando o contador
+
+  printf("\n-----Fila normal-----\n");
+  // preenchendo a fila normal
+  for (counter = 1; counter <= numClientes; counter++) {
+    pula_linha();
+    menu();
+    scanf("%d", &resposta);
+
+    inserir(f, resposta);
+  }
+
+
   for (int i = 0; i < 6; i++) {
-      controlador[i] = 0;
+    controlador[i] = 0;
   }
 
   // contador de clientes
   int atendidos = 0;
 
   do {
+    printf("-----Atendimento-----");
+    pula_linha();
     menu();
     scanf("%i", &resposta);
 
@@ -43,10 +70,10 @@ int main() {
 
       if (temPrioridade() == 1) {
         consultarSaldo(prioridade);
-        inserir(prioridade, 10);
+        remover(prioridade);
       } else {
         consultarSaldo(f);
-        inserir(f, 10); // 10 segundos
+        remover(f);
       }
 
       controlador[0]++;
@@ -64,10 +91,10 @@ int main() {
 
       if (temPrioridade() == 1) {
         sacarDinheiro(prioridade);
-        inserir(prioridade, 20);
+        remover(prioridade);
       } else {
         sacarDinheiro(f);
-        inserir(f, 20); // 20 segundos
+        remover(f);
       }
 
       controlador[1]++;
@@ -90,10 +117,10 @@ int main() {
 
      if (temPrioridade() == 1) {
        aplicacao(prioridade);
-       inserir(prioridade, 30);
+       remover(prioridade);
      } else {
        aplicacao(f);
-       inserir(f, 30); // 30 segundos
+       remover(f);
      }
 
       controlador[2]++;
@@ -111,10 +138,10 @@ int main() {
 
       if (temPrioridade() == 1) {
         extrato(prioridade);
-        inserir(prioridade, 40);
+        remover(prioridade);
       } else {
         extrato(f);
-        inserir(f, 40); // 40 segundos
+        remover(f);
       }
 
       controlador[3]++;
@@ -133,10 +160,10 @@ int main() {
 
       if (temPrioridade() == 1) {
         pagarEmDinheiro(prioridade);
-        inserir(prioridade, 50);
+        remover(prioridade);
       } else {
         pagarEmDinheiro(f);
-        inserir(f, 50); // 50 segundos
+        remover(f);
       }
 
       controlador[4]++;
@@ -155,10 +182,10 @@ int main() {
 
       if (temPrioridade() == 1) {
         pagarComDebito(prioridade);
-        inserir(prioridade, 35);
+        remover(prioridade);
       } else {
         pagarComDebito(f);
-        inserir(f, 35); // 35 segundos
+        remover(f);
       }
 
       controlador[5]++;
