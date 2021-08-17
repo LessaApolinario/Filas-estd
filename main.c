@@ -9,7 +9,7 @@ int main() {
 
   setlocale(LC_ALL, "Portuguese");
 
-  int resposta, i = 0;
+  int resposta, i = 1;
   int controlador[6];
   int numClientes;
 
@@ -171,7 +171,7 @@ int main() {
     }
 
     i++;
-  } while (i != numClientes); // 10 clientes no máximo
+  } while (i <= numClientes); // 10 clientes no máximo
 
   printf("\nDados após o fim do expediente:");
   pula_linha();
