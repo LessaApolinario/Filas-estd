@@ -1,12 +1,11 @@
 struct lista {
-  int info;
+  float saldo;
   struct lista *prox;
 	struct lista *ant;
 };
 typedef struct lista Lista;
 
 struct fila {
-  float saldo;
   Lista *inicio;
   Lista *fim;
 };
@@ -14,7 +13,9 @@ typedef struct fila Fila;
 
 Fila* criar();
 
-void inserir(Fila *f, int valor);
+void inserir(Fila *f);
+
+void formarFilas(Fila *f, Fila *prioridade, int i);
 
 void consultar(Fila *f);
 
@@ -39,10 +40,6 @@ void extrato(Fila *f);
 void pagarEmDinheiro(Fila *f);
 
 void pagarComDebito(Fila *f);
-
-int contarOperacao(Fila *f, int tempo);
-
-int acumularTempo(Fila *f, int tempo);
 
 int temPrioridade();
 

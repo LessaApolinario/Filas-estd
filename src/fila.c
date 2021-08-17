@@ -9,9 +9,9 @@ Fila* criar() {
 	return f;
 }
 
-void inserir(Fila *f, int valor) {
+void inserir(Fila *f) {
   Lista *aux = (Lista*)malloc(sizeof(Lista));
-  aux->info = valor;
+  aux->saldo = 1500;
   aux->prox = NULL;
 
 	if (f->inicio == NULL) {
@@ -22,13 +22,24 @@ void inserir(Fila *f, int valor) {
   }
 }
 
+void formarFilas(Fila *f, Fila *prioridade, int i) {
+  pula_linha();
+  printf("Pessoa %i a se apresentar: \n", i+1);
+  int verifica = temPrioridade();
+  if(verifica == 1) {
+    inserir(prioridade);
+  }
+  else {
+    inserir(f);
+  }
+}
 void consultar(Fila *f){
   Lista *aux = f->inicio;
 
   printf("\nFila: ");
 
 	while(aux != NULL){
-    printf("%d ", aux->info);
+    printf("%.2f ", aux->saldo);
 
     aux = aux->prox;
   }
@@ -44,7 +55,7 @@ int remover(Fila *f){
     printf("\nFila vazia!");
   }
 	else {
-    valor = f->inicio->info;
+    valor = f->inicio->saldo;
     f->inicio = f->inicio->prox;
 
 		if (f->inicio == NULL) {
@@ -52,6 +63,10 @@ int remover(Fila *f){
 		}
 
     free(aux);
+  }
+  if(f->inicio == f->fim && f->fim == NULL) {
+      f = NULL;
+      free(f);
   }
   return valor;
 }
@@ -81,20 +96,20 @@ void erro() {
 void menu() {
   printf("------FILA DO BANCO------");
   pula_linha();
-  printf("Qual serviço você fará? ");
+  printf("Qual serviço será realizado? ");
   pula_linha();
   printf("1 - Consultar saldo.\n2 - Sacar dinheiro.");
   printf("\n3 - Aplicação.\n4 - Extrato.\n5 - Pagamento em dinheiro.");
-  printf("\n6 - Pagamento com débito em conta.\n:");
+  printf("\n6 - Pagamento com débito em conta.\n: ");
 }
 
 void consultarSaldo(Fila *f) {
-  if (f->saldo == 0) {
-    f->saldo = 1500;
+  if (f->inicio->saldo == 0) {
+    f->inicio->saldo = 1500;
   }
 
   pula_linha();
-  printf("Seu saldo: R$ %.2f", f->saldo);
+  printf("Seu saldo: R$ %.2f", f->inicio->saldo);
   pula_linha();
 }
 
@@ -104,7 +119,7 @@ void sacarDinheiro(Fila *f) {
   printf("Quanto você deseja sacar? ");
   scanf("%f", &valorSaque);
 
-  aux->saldo -= valorSaque;
+  aux->inicio->saldo -= valorSaque;
 
   pula_linha();
   printf("Valor retirado com sucesso!");
@@ -125,23 +140,23 @@ void aplicacao(Fila *f) {
   scanf("%f", &taxaIR);
 
   for (i = 1; i <= meses; i++) {
-    rendimento += f->saldo * (taxa / 100);
-    f->saldo += rendimento;
+    rendimento += f->inicio->saldo * (taxa / 100);
+    f->inicio->saldo += rendimento;
 
-    printf("Saldo no mês %d = R$ %.2f\n", i, f->saldo);
+    printf("Saldo no mês %d = R$ %.2f\n", i, f->inicio->saldo);
   }
 
   impostoDeRenda = rendimento * (taxaIR / 100);
 
   pula_linha();
-  printf("Valor a receber = R$ %.2f\n", (f->saldo - impostoDeRenda));
+  printf("Valor a receber = R$ %.2f\n", (f->inicio->saldo - impostoDeRenda));
   pula_linha();
 }
 
 void extrato(Fila *f) {
   printf("------EXTRATO------");
   pula_linha();
-  printf("C: R$%f\n", f->saldo);
+  printf("C: R$%.2f\n", f->inicio->saldo);
   printf("D: ------");
   pula_linha();
 }
@@ -152,12 +167,12 @@ void pagarEmDinheiro(Fila *f) {
   printf("Qual é o valor da divida? ");
   scanf("%f", &divida);
 
-  if (f->saldo >= divida) {
+  if (f->inicio->saldo >= divida) {
     pula_linha();
     printf("Pagamento realizado com sucesso!");
     pula_linha();
 
-    f->saldo -= divida;
+    f->inicio->saldo -= divida;
   } else {
     pula_linha();
     printf("Saldo insuficiente, falha no pagamento!");
@@ -169,7 +184,7 @@ void pagarComDebito(Fila *f) {
   float debito = 200;
   char data[10] = "20/08/2021";
 
-  f->saldo -= debito;
+  f->inicio->saldo -= debito;
 
   pula_linha();
   printf("--------------------");
@@ -181,63 +196,12 @@ void pagarComDebito(Fila *f) {
   pula_linha();
 }
 
-int contarOperacao(Fila *f, int tempo) {
-  int cont = 0;
-
-  Lista *aux = f->inicio;
-
-  while (aux != NULL) {
-    if (aux->info == tempo) {
-      cont++;
-    }
-
-    aux = aux->prox;
-  }
-
-  return cont;
-}
-
-int acumularTempo(Fila *f, int tempo) {
-  int total = 0;
-
-  Lista *aux = f->inicio;
-
-  while (aux != NULL) {
-    if (aux->info == tempo) {
-      total += tempo;
-    }
-
-    aux = aux->prox;
-  }
-
-  return total;
-}
 
 int temPrioridade() {
   int resposta;
 
   printf("É idoso (a) ou gestante? (1 - SIM, 0 - NÃO)\n");
   scanf("%d", &resposta);
-
-  return resposta;
-}
-
-int verificarInsercao(Fila *f, int resposta) {
-  if (resposta == 1) {
-    inserir(f, 10);
-  } else if (resposta == 2) {
-    inserir(f, 20);
-  } else if (resposta == 3) {
-    inserir(f, 30);
-  } else if (resposta == 4) {
-    inserir(f, 40);
-  } else if (resposta == 5) {
-    inserir(f, 50);
-  } else if (resposta == 6) {
-    inserir(f, 35);
-  } else {
-    printf("\nOpção inválida!\n");
-  }
 
   return resposta;
 }
