@@ -9,8 +9,12 @@ int main() {
 
   setlocale(LC_ALL, "Portuguese");
 
-  int resposta, horarioExpediente = 0;
+  int resposta, i = 0;
   int controlador[6];
+  int numClientes;
+
+  printf("Informe o número de clientes: ");
+  scanf("%d", &numClientes);
 
   for (int i = 0; i < 6; i++) {
       controlador[i] = 0;
@@ -76,7 +80,7 @@ int main() {
         com a função consultarSaldo() para que o saldo da aplicação
         seja diferente de 0, evitando que a saída seja 0 na função aplicacao().
       */
-     
+
      if (controlador[2] != 0) {
         erro();
         printf("\nOperação já efetuada!");
@@ -97,7 +101,7 @@ int main() {
       break;
 
     case 4:
-      
+
       if (controlador[3] != 0) {
         erro();
         printf("\nOperação já efetuada!");
@@ -119,7 +123,7 @@ int main() {
 
     case 5:
       // Por favor exiba o saldo antes de executar essa função
-      
+
       if (controlador[4] != 0) {
         erro();
         printf("\nOperação já efetuada!");
@@ -141,7 +145,7 @@ int main() {
 
     case 6:
       // Por favor exiba o saldo antes de executar essa função
-      
+
       if (controlador[5] != 0) {
         erro();
         printf("\nOperação já efetuada!");
@@ -166,8 +170,8 @@ int main() {
       break;
     }
 
-    horarioExpediente++;
-  } while (horarioExpediente != 10); // 10 clientes no máximo
+    i++;
+  } while (i != numClientes); // 10 clientes no máximo
 
   printf("\nDados após o fim do expediente:");
   pula_linha();
