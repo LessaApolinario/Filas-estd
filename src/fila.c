@@ -206,6 +206,7 @@ int acumularTempo(Fila *f, int tempo) {
     if (aux->info == tempo) {
       total += tempo;
     }
+
     aux = aux->prox;
   }
 
@@ -221,4 +222,22 @@ int temPrioridade() {
   return resposta;
 }
 
+int verificarInsercao(Fila *f, int resposta) {
+  if (resposta == 1) {
+    inserir(f, 10);
+  } else if (resposta == 2) {
+    inserir(f, 20);
+  } else if (resposta == 3) {
+    inserir(f, 30);
+  } else if (resposta == 4) {
+    inserir(f, 40);
+  } else if (resposta == 5) {
+    inserir(f, 50);
+  } else if (resposta == 6) {
+    inserir(f, 35);
+  } else {
+    printf("\nOpção inválida!\n");
+  }
 
+  return resposta;
+}

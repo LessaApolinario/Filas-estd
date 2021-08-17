@@ -25,7 +25,7 @@ int main() {
     menu();
     scanf("%d", &resposta);
 
-    inserir(prioridade, resposta);
+    verificarInsercao(prioridade, resposta);
   }
 
   counter = 0; // reinicializando o contador
@@ -37,7 +37,7 @@ int main() {
     menu();
     scanf("%d", &resposta);
 
-    inserir(f, resposta);
+    verificarInsercao(f, resposta);
   }
 
 

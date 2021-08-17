@@ -45,3 +45,5 @@ int contarOperacao(Fila *f, int tempo);
 int acumularTempo(Fila *f, int tempo);
 
 int temPrioridade();
+
+int verificarInsercao(Fila *f, int resposta);
