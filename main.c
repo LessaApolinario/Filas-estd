@@ -1,20 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <unistd.h>
 #include "./src/fila.h"
 
 int main() {
   Fila *f = criar();
   Fila *prioridade = criar();
+  Fila *aux = criar();
 
   setlocale(LC_ALL, "Portuguese");
 
-  int resposta, i = 0;
+  int i = 0;
   int controlador[6];
   int numClientes;
   int counter = 0;
   int tempoNormal = 0;
   int tempoPrioridade = 0;
+  int const terminaExpediente = 10;
 
   printf("Informe o número de clientes: ");
   scanf("%d", &numClientes);
@@ -35,16 +38,21 @@ int main() {
   do {
     printf("-----Atendimento-----");
     pula_linha();
-    menu();
-    scanf("%i", &resposta);
+    if (prioridade->inicio != NULL) {
+      aux = prioridade;
+    }
+    else {
+      aux = f;
+    }
 
-    switch (resposta) {
+    switch (aux->inicio->resposta) {
     case 0:
       printf("Agradecemos a preferência!\n");
       break;
 
     case 1:
       printf("Tempo esperado na fila: %is", tempoNormal + tempoPrioridade);
+      pula_linha();
       if (prioridade->inicio == NULL) {
         tempoNormal +=  10;
         consultarSaldo(f);
@@ -62,6 +70,7 @@ int main() {
 
     case 2:
       printf("Tempo esperado na fila: %is", tempoNormal + tempoPrioridade);
+      pula_linha();
       if (prioridade->inicio == NULL) {
         tempoNormal +=  20;
         sacarDinheiro(f);
@@ -83,6 +92,7 @@ int main() {
         seja diferente de 0, evitando que a saída seja 0 na função aplicacao().
       */
      printf("Tempo esperado na fila: %is", tempoNormal + tempoPrioridade);
+     pula_linha();
      if (prioridade->inicio == NULL) {
        tempoNormal += 30;
        aplicacao(f);
@@ -99,6 +109,7 @@ int main() {
 
     case 4:
       printf("Tempo esperado na fila: %is", tempoNormal + tempoPrioridade);
+      pula_linha();
       if (prioridade->inicio == NULL) {
         tempoNormal += 40;
         extrato(f);
@@ -116,6 +127,7 @@ int main() {
     case 5:
       // Por favor exiba o saldo antes de executar essa função
       printf("Tempo esperado na fila: %is", tempoNormal + tempoPrioridade);
+      pula_linha();
       if (prioridade->inicio == NULL) {
         tempoNormal += 50;
         pagarEmDinheiro(f);
@@ -133,6 +145,7 @@ int main() {
     case 6:
       // Por favor exiba o saldo antes de executar essa função
       printf("Tempo esperado na fila: %is", tempoNormal + tempoPrioridade);
+      pula_linha();
       if (prioridade->inicio == NULL) {
         tempoNormal += 35;
         pagarComDebito(f);
@@ -153,7 +166,10 @@ int main() {
     }
 
     i++;
-  } while (i <= numClientes); // 10 clientes no máximo
+    if(i < terminaExpediente && aux->inicio == NULL) {
+      i = terminaExpediente;
+    }
+  } while (i <= terminaExpediente); // 10 clientes no máximo
 
   printf("\nDados após o fim do expediente:");
   pula_linha();
@@ -174,7 +190,7 @@ int main() {
   pula_linha();
   printf("Tempo Total: %is", tempoPrioridade);
   pula_linha();
-  printf("-----Tempos total de operações-----");
+  printf("-----Tempo total de operações-----");
   pula_linha();
   printf("Tempo total: %is", tempoPrioridade + tempoNormal);
   pula_linha();

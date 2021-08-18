@@ -1,5 +1,6 @@
 struct lista {
   float saldo;
+  int resposta; 
   struct lista *prox;
 	struct lista *ant;
 };
@@ -40,6 +41,10 @@ void extrato(Fila *f);
 void pagarEmDinheiro(Fila *f);
 
 void pagarComDebito(Fila *f);
+
+int contarOperacao(Fila *f, int tempo);
+
+int acumularTempo(Fila *f, int tempo);
 
 int temPrioridade();
 

@@ -12,6 +12,8 @@ Fila* criar() {
 void inserir(Fila *f) {
   Lista *aux = (Lista*)malloc(sizeof(Lista));
   aux->saldo = 1500;
+  menu();
+  scanf("%i", &aux->resposta);
   aux->prox = NULL;
 
 	if (f->inicio == NULL) {
@@ -94,7 +96,7 @@ void erro() {
 }
 
 void menu() {
-  printf("------FILA DO BANCO------");
+  printf("------OPERAÇÕES DO BANCO------");
   pula_linha();
   printf("Qual serviço será realizado? ");
   pula_linha();
@@ -104,6 +106,8 @@ void menu() {
 }
 
 void consultarSaldo(Fila *f) {
+  printf("------CONSULTAR SALDO------");
+  pula_linha();
   if (f->inicio->saldo == 0) {
     f->inicio->saldo = 1500;
   }
@@ -114,6 +118,8 @@ void consultarSaldo(Fila *f) {
 }
 
 void sacarDinheiro(Fila *f) {
+  printf("------SACAR DINHEIRO------");
+  pula_linha();
   Fila *aux = f;
   float valorSaque;
   printf("Quanto você deseja sacar? ");
@@ -130,6 +136,8 @@ void aplicacao(Fila *f) {
   int meses, i;
   float impostoDeRenda = 0, rendimento = 0, taxa, taxaIR;
 
+  printf("------APLICAÇÃO------");
+  pula_linha();
   printf("Quantos meses? ");
   scanf("%d", &meses);
 
@@ -164,6 +172,9 @@ void extrato(Fila *f) {
 void pagarEmDinheiro(Fila *f) {
   float divida;
 
+  printf("------PAGAMENTO - DINHEIRO------");
+  pula_linha();
+
   printf("Qual é o valor da divida? ");
   scanf("%f", &divida);
 
@@ -185,7 +196,7 @@ void pagarComDebito(Fila *f) {
   char data[10] = "20/08/2021";
 
   f->inicio->saldo -= debito;
-
+  printf("------PAGAMENTO - DÉBITO------");
   pula_linha();
   printf("--------------------");
   pula_linha();
@@ -195,7 +206,6 @@ void pagarComDebito(Fila *f) {
   printf("--------------------");
   pula_linha();
 }
-
 
 int temPrioridade() {
   int resposta;
