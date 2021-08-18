@@ -14,6 +14,12 @@ void inserir(Fila *f) {
   aux->saldo = 1500;
   menu();
   scanf("%i", &aux->resposta);
+  if(aux->resposta < 0 || aux->resposta > 6) {
+    erro();
+    printf("Tente novamente!");
+    pula_linha();
+    inserir(f);
+  }
   aux->prox = NULL;
 
 	if (f->inicio == NULL) {
@@ -31,8 +37,12 @@ void formarFilas(Fila *f, Fila *prioridade, int i) {
   if(verifica == 1) {
     inserir(prioridade);
   }
-  else {
+  else if (verifica == 0){
     inserir(f);
+  }
+  else {
+    printf("Tente novamente!");
+    formarFilas(f, prioridade, i);
   }
 }
 void consultar(Fila *f){
@@ -68,7 +78,6 @@ int remover(Fila *f){
   }
   if(f->inicio == f->fim && f->fim == NULL) {
       f = NULL;
-      free(f);
   }
   return valor;
 }
@@ -91,6 +100,7 @@ void pula_linha() {
 }
 
 void erro() {
+    pula_linha();
     printf("Opção inválida ou campo não correspondente!");
     pula_linha();
 }
@@ -106,8 +116,7 @@ void menu() {
 }
 
 void consultarSaldo(Fila *f) {
-  printf("------CONSULTAR SALDO------");
-  pula_linha();
+  printf("------CONSULTAR SALDO------\n");
   if (f->inicio->saldo == 0) {
     f->inicio->saldo = 1500;
   }
@@ -212,6 +221,11 @@ int temPrioridade() {
 
   printf("É idoso (a) ou gestante? (1 - SIM, 0 - NÃO)\n");
   scanf("%d", &resposta);
+
+  if(resposta != 0 && resposta != 1) {
+    erro();
+    return -1;
+  }
 
   return resposta;
 }
